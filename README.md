@@ -101,3 +101,17 @@ bash scripts/setup-and-run-wine.sh
 ```
 
 The script will back up any existing `~/.wine` to `~/.wine.bak.<timestamp>` and create a fresh 64-bit prefix, publish to `out-nofs/` and try to run the exe with `wine64`. If it fails the script saves a `wine-debug.log` with diagnostic output.
+
+Project-local Wine prefix
+
+By default the helper scripts now use a project-local Wine prefix at `./.wine` (inside the repository) so running this project won't interfere with any global `~/.wine` you may have. You can override this by setting the `WINEPREFIX` environment variable to another path.
+
+Examples:
+
+```fish
+# use project-local prefix (default)
+bash scripts/setup-and-run-wine.sh
+
+# or explicitly set a custom prefix
+WINEPREFIX=$HOME/.wine-project bash scripts/setup-and-run-wine.sh
+```

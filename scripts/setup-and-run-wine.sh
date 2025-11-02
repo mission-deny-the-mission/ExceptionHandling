@@ -8,9 +8,11 @@ set -euo pipefail
 #   bash scripts/setup-and-run-wine.sh
 #
 # Optional env vars:
-#   WINEPREFIX - custom wine prefix path (default: $HOME/.wine)
+#   WINEPREFIX - custom wine prefix path (default: ./ .wine inside project)
 
-PREFIX=${WINEPREFIX:-$HOME/.wine}
+# Default to a project-local wine prefix so running this project doesn't interfere
+# with the user's global ~/.wine prefix. You can override with WINEPREFIX env var.
+PREFIX=${WINEPREFIX:-$PWD/.wine}
 BACKUP_DIR="${PREFIX}.bak.$(date +%s)"
 
 echo "Checking prerequisites..."
